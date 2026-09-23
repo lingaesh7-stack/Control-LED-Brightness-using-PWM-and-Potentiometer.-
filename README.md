@@ -18,9 +18,7 @@ To control the brightness of an LED using a Potentiometer and PWM (Pulse Width M
 
 # Circuit Diagram
 
----
-To upload
----
+<img width="422" height="747" alt="WhatsApp Image 2026-08-06 at 10 59 13 AM" src="https://github.com/user-attachments/assets/c9b081a2-c6f6-4afe-95b7-b0ef381296b6" />
 
 # Procedure
 
@@ -68,13 +66,43 @@ To upload
 3. Record the observations.
 
 # Program
+```
+// Control LED Brightness using PWM and Potentiometer
 
----
-To upload
----
+const int potPin = A0;     // Potentiometer connected to A0
+const int ledPin = 9;      // PWM pin connected to LED
 
-# Observation
+int potValue = 0;
+int brightness = 0;
 
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+
+  // Read potentiometer value (0 to 1023)
+  potValue = analogRead(potPin);
+
+  // Convert to PWM range (0 to 255)
+  brightness = map(potValue, 0, 1023, 0, 255);
+
+  // Set LED brightness
+  analogWrite(ledPin, brightness);
+
+  // Display values on Serial Monitor
+  Serial.print("Potentiometer: ");
+  Serial.print(potValue);
+  Serial.print("  Brightness: ");
+  Serial.println(brightness);
+
+  delay(10);
+}
+```
+# OUTPUT
+
+<img width="1407" height="1600" alt="WhatsApp Image 2026-09-23 at 1 01 18 PM" src="https://github.com/user-attachments/assets/f4c82bbd-03a4-4145-949a-46ff0585b465" />
 
 # Result
 
